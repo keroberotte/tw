@@ -59,6 +59,12 @@
 % tw --search=ruby
 </code></pre>
 
+<h3>Stream</h3>
+
+<pre><code>% tw --stream
+% tw --stream:filter=ruby,java</code></pre>
+
+
 <h3>DM</h3>
 
 <pre><code>% tw --dm
@@ -78,6 +84,8 @@ add "@user2"
   user3
 (3 users)
 % tw hello --user=user2
+% tw --timeline --user=user2
+% tw @shokai @user3 --user=user2
 % tw --user:default=user2
 set default user "@user2"</code></pre>
 
