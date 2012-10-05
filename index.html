@@ -10,7 +10,7 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>Tw</title>
+    <title>Tw: Twitter client on Ruby.</title>
   </head>
 
   <body>
@@ -45,7 +45,8 @@
 </code></pre>
 
 <h3>Tweet</h3>
-<pre><code>% tw hello hello
+<pre><code>% tw hello world
+% echo 'hello work' | tw --pipe
 </code></pre>
 
 <h3>read Timeline</h3>
@@ -77,7 +78,8 @@ add "@user2"
   user2
   user3
 (3 users)
-% tw hello --user=user2
+% tw I am user2  --user=user2
+% echo "this is bot tweet" | tw --user=user3 --pipe
 % tw --timeline --user=user2
 % tw @shokai @user3 --user=user2
 % tw --user:default=user2
