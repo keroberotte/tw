@@ -59,13 +59,18 @@
 
 <h3>Stream</h3>
 <pre><code>% tw --stream
-% tw --stream:filter=ruby,java</code></pre>
+% tw --stream:filter=ruby,java --silent</code></pre>
 
 
 <h3>DM</h3>
 <pre><code>% tw --dm
-% tw --dm:to=shokai "hello!"
-</code></pre>
+% tw --dm:to=shokai "hello!"</code></pre>
+
+
+<h3>Format</h3>
+#{user} , #{text} , #{id} , #{time} , #{url}
+<pre><code>% tw --format=json
+% tw --stream --format="@#{user} #{text} - #{url}"</code></pre>
 
 
 <h3>Switch Accounts</h3>
@@ -84,6 +89,24 @@ add "@user2"
 % tw @shokai @user3 --user=user2
 % tw --user:default=user2
 set default user "@user2"</code></pre>
+
+<h2>Recipes</h2>
+
+<h3>Twitter Reply Bot : Search Stream then Tweet "OK"</h3>
+combination of --stream, --silent, --format and --pipe.
+<pre><code>% tw --silent --stream:filter=BOT_NAME --user=BOT_NAME --format="@#{user} OK" | tw --pipe --user=BOT_NAME</code></pre>
+
+<h3>Notify when heavy Task finished</h3>
+<pre><code>% make build && tw --dm:to=shokai 'build success!!' --user=shokai_log</code></pre>
+
+<h3>Morning Call</h3>
+<pre><code>0 8 * * * tw '@shokai Wake up `/bin/date`' --user=shokai_log</code></pre>
+
+<h3>Read Config File</h3>
+<pre><code>cat $HOME/tw.yml</code></pre>
+
+<h3>Internal API Usage</h3>
+see <a href="https://github.com/shokai/tw/tree/master/samples">samples</a>.
 
         </section>
 
