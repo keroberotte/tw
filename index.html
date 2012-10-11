@@ -93,6 +93,9 @@ set default user "@user2"</code></pre>
 
 <h2>Recipes</h2>
 
+<h3>HashTag Radio</h3>
+<pre><code>% tw --silent --stream:filter=hashtag1,tag2,tag3 --format="#{text}" | xargs -n1 say</code></pre>
+
 <h3>Twitter Reply Bot : Search Stream then Tweet "OK"</h3>
 combination of --stream, --silent, --format and --pipe.
 <pre><code>% tw --silent --stream:filter=BOT_NAME --user=BOT_NAME --format="@#{user} OK" | tw --pipe --user=BOT_NAME</code></pre>
