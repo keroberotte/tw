@@ -18,6 +18,8 @@ module Tw
       @client.user do |m|
         if data = tweet?(m)
           yield data
+	elsif data = faved?(m)
+          yield data
         end
       end
     end
@@ -37,6 +39,16 @@ module Tw
       Tw::Tweet.new(:id => chunk.id,
                     :user => chunk.user.screen_name,
                     :text => chunk.text,
+                    :time => (Time.parse chunk.created_at))
+    end
+
+    # 相互から自分と、自分から相互への通知しか取れないっぽい
+    # 通知専用のdisplayメソッドを作りたい
+    def faved?(chunk)
+      return false unless chunk.target_object and chunk.target_object.id and chunk.event and chunk.event == "favorite"
+      Tw::Tweet.new(:id => chunk.target_object.id,
+                    :user => chunk.target.screen_name,
+                    :text => chunk.target_object.text + " favorited by @" + chunk.source.screen_name,
                     :time => (Time.parse chunk.created_at))
     end
 
